@@ -63,8 +63,9 @@ add_executable(bitball
 )
 
 target_include_directories(bitball PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(bitball PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/third_party/glad/include")
 
-target_link_libraries(bitball PRIVATE SDL3::SDL3)
+target_link_libraries(bitball PRIVATE SDL3::SDL3 glad)
 
 if(MSVC)
   target_compile_options(bitball PRIVATE /W4 /permissive- /utf-8)

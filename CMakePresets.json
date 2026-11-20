@@ -1,0 +1,58 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "msvc-base",
+      "hidden": true,
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "vs2022",
+      "displayName": "MSVC x64 (Visual Studio 2022)",
+      "inherits": "msvc-base",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/vs17"
+    },
+    {
+      "name": "vs2026",
+      "displayName": "MSVC x64 (Visual Studio 2026)",
+      "inherits": "msvc-base",
+      "generator": "Visual Studio 18 2026",
+      "binaryDir": "${sourceDir}/build/vs18"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "vs2022-debug",
+      "displayName": "Debug (VS 2022)",
+      "configurePreset": "vs2022",
+      "configuration": "Debug"
+    },
+    {
+      "name": "vs2022-release",
+      "displayName": "Release (VS 2022)",
+      "configurePreset": "vs2022",
+      "configuration": "Release"
+    },
+    {
+      "name": "vs2026-debug",
+      "displayName": "Debug (VS 2026)",
+      "configurePreset": "vs2026",
+      "configuration": "Debug"
+    },
+    {
+      "name": "vs2026-release",
+      "displayName": "Release (VS 2026)",
+      "configurePreset": "vs2026",
+      "configuration": "Release"
+    }
+  ]
+}

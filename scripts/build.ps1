@@ -52,4 +52,4 @@ if ($LASTEXITCODE -ne 0) { throw "CMake configure failed." }
 cmake --build $buildDir --config $Configuration
 if ($LASTEXITCODE -ne 0) { throw "Build failed." }
 
-Write-Host "`nBuilt: $buildDir\$Configuration\bitball.exe"
+Write-Host "`nBuilt: $repoRoot\bin\$Configuration\bitball.exe"

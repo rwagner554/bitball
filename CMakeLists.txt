@@ -37,6 +37,11 @@ find_package(SDL3 3.2 CONFIG REQUIRED)
 # ---------------------------------------------------------------------------
 # Game executable
 # ---------------------------------------------------------------------------
+# All build products land in <repo>/bin/<Config>/, not inside build/. Using a
+# generator expression here stops multi-config generators (Visual Studio) from
+# appending their own configuration subdirectory on top.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>")
+
 add_executable(bitball
   src/main.cpp
 )

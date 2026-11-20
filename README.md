@@ -39,9 +39,12 @@ cmake --preset vs2022
 cmake --build --preset vs2022-debug
 ```
 
-Output lands in `build/vs17/Debug/bitball.exe` (or `build/vs18/...`). `SDL3.dll`
+Output lands in `bin\Debug\bitball.exe` or `bin\Release\bitball.exe`. `SDL3.dll`
 is copied next to the executable automatically after every build, so the game
 runs straight from Explorer or the debugger.
+
+`build\` only holds CMake/MSBuild intermediates, so it can be deleted at any
+time (`rmdir /s /q build`) without losing anything.
 
 Adding a source file means adding it to the `add_executable(bitball ...)` list
 in `CMakeLists.txt`.

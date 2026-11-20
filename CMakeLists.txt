@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(bitball LANGUAGES CXX)
+project(bitball LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -33,6 +33,21 @@ endif()
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/SDL3")
 find_package(SDL3 3.2 CONFIG REQUIRED)
+
+# ---------------------------------------------------------------------------
+# OpenGL loader (GLAD)
+#
+# Windows only exports OpenGL 1.1 from opengl32.dll, so anything newer
+# (shaders included) has to be resolved at runtime. third_party/glad is GLAD's
+# generated output for OpenGL 3.3 core: glad/gl.h declares every core entry
+# point, glad.c loads them through the function pointer we hand it.
+#
+# Regenerate/upgrade with:
+#   py -m glad --api gl=3.3 --profile core \
+#       --out-path third_party/glad --generator c --reproducible
+# ---------------------------------------------------------------------------
+add_library(glad STATIC third_party/glad/src/glad.c)
+target_include_directories(glad SYSTEM PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/third_party/glad/include")
 
 # ---------------------------------------------------------------------------
 # Game executable
